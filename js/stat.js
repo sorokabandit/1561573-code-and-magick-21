@@ -33,15 +33,15 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText(`Ура вы победили!`, 140, 30);
   ctx.fillText(`Список результатов:`, 140, 50);
   let colors = [];
-  colors[0] = `hsl(244, 73%, 36%)`;
-  colors[1] = `hsl(244, 97%, 56%)`;
-  colors[2] = `hsl(244, 75%, 24%)`;
-  colors[3] = `hsl(244, 83%, 14%)`;
+  colors[0] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
+  colors[1] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
+  colors[2] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
+  colors[3] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
   ctx.fillStyle = `rgba(255, 0, 0, 1)`;
   let maxTime = getMaxElement(times);
   for (let i = 0; i < names.length; i++) {
     ctx.fillStyle = `black`;
-    ctx.fillText(times[i].toFixed(), (CLOUD_X + GAP_GORIZONTAL) + i * (BAR_WIDTH + BAR_GAPBETWEEN), CLOUD_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime - 4 * GAP);
+    ctx.fillText(Math.round(times[i]), (CLOUD_X + GAP_GORIZONTAL) + i * (BAR_WIDTH + BAR_GAPBETWEEN), CLOUD_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime - 4 * GAP);
     ctx.fillText(names[i], (CLOUD_X + GAP_GORIZONTAL) + i * (BAR_WIDTH + BAR_GAPBETWEEN), CLOUD_Y + TEXT_HEIGHT + BAR_HEIGHT + FONT_GAP);
     ctx.fillStyle = colors[i];
     ctx.fillRect(CLOUD_X + GAP_GORIZONTAL + i * (BAR_WIDTH + BAR_GAPBETWEEN), CLOUD_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime - 3 * GAP, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
