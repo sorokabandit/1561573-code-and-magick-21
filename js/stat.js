@@ -24,7 +24,9 @@ const getMaxElement = function (arr) {
   }
   return maxElement;
 };
-
+const getRandomColor = function () {
+  return `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
+};
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, `#fff`);
@@ -32,18 +34,15 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = `16px PTMono`;
   ctx.fillText(`Ура вы победили!`, 140, 30);
   ctx.fillText(`Список результатов:`, 140, 50);
-  let colors = [];
-  colors[0] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
-  colors[1] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
-  colors[2] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
-  colors[3] = `rgb(${Math.random() * 150}, ${Math.random() * 150}, 255 )`;
+
+
   ctx.fillStyle = `rgba(255, 0, 0, 1)`;
   let maxTime = getMaxElement(times);
   for (let i = 0; i < names.length; i++) {
     ctx.fillStyle = `black`;
     ctx.fillText(Math.round(times[i]), (CLOUD_X + GAP_GORIZONTAL) + i * (BAR_WIDTH + BAR_GAPBETWEEN), CLOUD_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime - 4 * GAP);
     ctx.fillText(names[i], (CLOUD_X + GAP_GORIZONTAL) + i * (BAR_WIDTH + BAR_GAPBETWEEN), CLOUD_Y + TEXT_HEIGHT + BAR_HEIGHT + FONT_GAP);
-    ctx.fillStyle = colors[i];
+    ctx.fillStyle = getRandomColor();
     ctx.fillRect(CLOUD_X + GAP_GORIZONTAL + i * (BAR_WIDTH + BAR_GAPBETWEEN), CLOUD_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime - 3 * GAP, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
 
   }
