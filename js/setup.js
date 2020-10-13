@@ -16,7 +16,7 @@ let nameFocus = false;
 
 
 const onPopupEscPress = function (evt) {
-  if (evt.key === `Escape`) {
+  if (evt.key === `Escape` && !nameFocus) {
     evt.preventDefault();
     closePopup();
   }
@@ -37,13 +37,6 @@ const closePopup = function () {
 
 setupOpen.addEventListener(`click`, function () {
   openPopup();
-});
-
-document.addEventListener(`keydown`, function (evt) {
-  if (evt.key === `Escape` && !nameFocus) {
-    evt.preventDefault();
-    closePopup();
-  }
 });
 
 
