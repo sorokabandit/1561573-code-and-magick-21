@@ -12,6 +12,7 @@ const inputColorEyes = setup.querySelector(`input[name="eyes-color"]`);
 const inputColorCoat = setup.querySelector(`input[name="coat-color"]`);
 const inputColorFireball = setup.querySelector(`input[name="fireball-color"]`);
 const userName = document.querySelector(`.setup-user-name`);
+const userNameInput = document.querySelector(`.setup-user-name`);
 let nameFocus = false;
 
 
@@ -65,9 +66,8 @@ userName.addEventListener(`blur`, function () {
 });
 
 
-const userNameInput = document.querySelector(`.setup-user-name`);
 userNameInput.addEventListener(`input`, function () {
-  let valueLength = userNameInput.value.length;
+  const valueLength = userNameInput.value.length;
 
   if (valueLength < MIN_NAME_LENGTH) {
     userNameInput.setCustomValidity(`Ещё ` + (MIN_NAME_LENGTH - valueLength) + ` симв.`);
@@ -120,7 +120,7 @@ for (let i = 0; i < wizards.length; i++) {
   similarListElement.appendChild(wizardElement);
 }
 
-let getColorFix = function (element, colors, input) {
+const getColorFix = function (element, colors, input) {
   element.addEventListener(`click`, function () {
     let elementColor = getRandomArrayItem(colors);
     element.style.fill = elementColor;
@@ -131,7 +131,7 @@ getColorFix(wizardeyes, EYES_COLOR, inputColorEyes);
 getColorFix(wizardcoat, COAT_COLORS, inputColorCoat);
 
 wizardfireball.addEventListener(`click`, function () {
-  let fireballColor = getRandomArrayItem(FIRE_BALL);
+  const fireballColor = getRandomArrayItem(FIRE_BALL);
   wizardfireball.style.background = fireballColor;
   inputColorFireball.value = fireballColor;
 });
