@@ -50,14 +50,23 @@
   };
   window.backend.load(sucsessHandler, errorHandler);
 
+  const errorSaveHandler = function () {
+    const nodesave = document.createElement(`div`);
+    nodesave.style = `z-index: 100; margin: 0 auto; text-align: center; background-color: red;`;
+    nodesave.style.position = `absolute`;
+    nodesave.style.left = 0;
+    nodesave.style.right = 0;
+    nodesave.style.fontSize = `30px`;
+  };
+  const successSaveHandler = function () {
+    userDialog.classList.add(`hidden`);
+  };
   const form = userDialog.querySelector(`.setup-wizard-form`);
   form.addEventListener(`submit`, function (evt) {
-    window.backend.save(new FormData(form), function () {
-      userDialog.classList.add(`hidden`);
-    });
     evt.preventDefault();
+    const formData = new FormData(evt.target);
+    window.backend.save(formData, successSaveHandler, errorSaveHandler);
   });
-
 
   // изменение цвета глаз и плаща
   const getColorFix = function (element, colors, input) {
